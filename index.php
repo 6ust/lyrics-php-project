@@ -30,7 +30,7 @@
 		<br>Original   => <?= number_format($rsDecimal,2) ?>
 		<br>Modificado => <?= number_format($rsDecimal,2,',','.') ?>
 	</h2>
-	
+
 	<table>
 		<thead>
 			<tr>
@@ -46,6 +46,16 @@
 			?>
 		</tbody>
 	</table>
-
+	
+	<h3>SuperVariavel 
+		<br> $_SERVER: <br>
+		<?php 
+			echo $_SERVER['SERVER_ADDR'].'<BR>';
+			echo $_SERVER['SERVER_NAME'].'<BR>';
+			echo $_SERVER['HTTP_ACCEPT_ENCODING'].'<BR>';
+			echo $_SERVER['HTTP_USER_AGENT'].'<BR>';
+			echo $_SERVER['REMOTE_ADDR'].'<BR>';
+		?>
+	</h3>
 </body>
 </html>
