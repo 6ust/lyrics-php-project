@@ -8,7 +8,8 @@
 		$variavelTestes = "Testando Variavel";
 		$decimal1 = 2.57;
 		$decimal2 = 8;
-		$rsDecimal = $decimal1 / $decimal2
+		$rsDecimal = $decimal1 / $decimal2;
+		$nomes = ["Mike", "Max", "Saphira", "Sophie", "Dylan", "Laura"]
 
 	?>
 	<meta charset="UTF-8">
@@ -30,5 +31,21 @@
 		<br>Modificado => <?= number_format($rsDecimal,2,',','.') ?>
 	</h2>
 	
+	<table>
+		<thead>
+			<tr>
+				<th>Nomes</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php 
+				//Laço especial para Array 
+				foreach ($nomes as $filho) {
+					echo '<tr>'.'<td>'. $filho .'</td>'.'</tr>';
+				}
+			?>
+		</tbody>
+	</table>
+
 </body>
 </html>
