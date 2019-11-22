@@ -23,71 +23,91 @@
 	?>
 	<meta charset="UTF-8">
 	<title><?php echo $title ?></title>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	<h1><?php echo $title ?></h1>
-	<input type="text" placeholder="<?= $variavelPhp ?>">
-	<button><?= $msgBtnOk ?></button>
+	<div class="text-center">
+		<h1><?php echo $title ?></h1>
+		<input type="text" placeholder="<?= $variavelPhp ?>">
+		<button><?= $msgBtnOk ?></button>
+	</div>
 	
 	<br>	
-	<h2><?= isset($variavelTestes) ?></h2>
-	<h2><?= isset($variavelT) ?></h2>
+
+	<div class="alert alert-dark tests-size">
+		<h2><?= isset($variavelTestes) ?></h2>
+		<h2><?= isset($variavelT) ?></h2>
+	</div>
 
 	<br>	
-	<h2>Valor de Variável Decimal Formatada: <br> <?= $decimal1 ?> / <?= $decimal2 ?> = <?= number_format($rsDecimal, 2) ?> </h2>
-	<h2>Inversão de formato de pontuação Americana: 
-		<br>Original   => <?= number_format($rsDecimal,2) ?>
-		<br>Modificado => <?= number_format($rsDecimal,2,',','.') ?>
-	</h2>
 
-	<table>
-		<thead>
-			<tr>
-				<th>Nomes</th>
-			</tr>
-		</thead>
-		<tbody>
-			<?php 
-				//Laço especial para Array 
-				foreach ($nomes as $filho) {
-					echo '<tr>'.'<td>'. $filho .'</td>'.'</tr>';
-				}
-			?>
-		</tbody>
-	</table>
+	<div class="alert alert-dark tests-size">
+		<h2>Valor de Variável Decimal Formatada:</h2>
+		<p><?= $decimal1 ?> / <?= $decimal2 ?> = <?= number_format($rsDecimal, 2) ?></p>
+	</div>
+
+	<br>	
+
+	<div class="alert alert-dark tests-size">
+		<h2>Inversão de formato de pontuação Americana: </h2>
+		<p>Original   => <?= number_format($rsDecimal,2) ?></p>
+		<p>Modificado => <?= number_format($rsDecimal,2,',','.') ?></p>
+	</div>
+
+	<br>	
 	
-	<h3>SuperVariavel 
-		<br> $_SERVER: <br>
+	<div class="alert alert-dark tests-size">
+		<table>
+			<thead>
+				<tr>
+					<th>Nomes</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php 
+					//Laço especial para Array 
+					foreach ($nomes as $filho) {
+						echo '<tr>'.'<td>'. $filho .'</td>'.'</tr>';
+					}
+				?>
+			</tbody>
+		</table>
+	</div>
+	
+	<br>
+
+	<div class="alert alert-dark tests-size">
 		<?php 
-			echo $_SERVER['SERVER_ADDR'].'<BR>';
-			echo $_SERVER['SERVER_NAME'].'<BR>';
-			echo $_SERVER['HTTP_ACCEPT_ENCODING'].'<BR>';
-			echo $_SERVER['HTTP_USER_AGENT'].'<BR>';
-			echo $_SERVER['REMOTE_ADDR'].'<BR>';
+			echo '<h3>' . 'SuperVariavel' . '</h3>'; 
+			echo '<p>' . '$_SERVER:' . '</p>';
+			echo '<p> <b> - </b>' . $_SERVER['SERVER_ADDR'] . '</p>';
+			echo '<p> <b> - </b>' . $_SERVER['SERVER_NAME'] . '</p>';
+			echo '<p> <b> - </b>' . $_SERVER['HTTP_ACCEPT_ENCODING'] . '</p>';
+			echo '<p> <b> - </b>' . $_SERVER['HTTP_USER_AGENT'] . '</p>';
+			echo '<p> <b> - </b>' . $_SERVER['REMOTE_ADDR'] . '</p>';
 		?>
-	</h3>
+	</div>
 
 	<br>
-	<br>
 
-	<h3> Métodos para Strings:
-		<br>
+	<div class="alert alert-dark tests-size">
 		<?php
+			echo '<h3>' . 'Métodos para Strings:' . '</h3>';
 			echo '<br>'.'$stringJSON => '. $stringJSON . '<br>';
 			echo '<br>'.'strlen($stringJSON) => '. strlen($stringJSON);
 			echo '<br>'.'strchr($stringJSON,'.'"e"'.') => '. strchr($stringJSON,'e');
 			echo '<br>'.'strrchr($stringJSON,'.'"e"'.') => '. strrchr($stringJSON,'e');
 			echo '<br>'.'strpos($stringJSON, "u", 2) => '. strpos($stringJSON, 'u', 4);
 			echo '<br>'.'strlen($stringJSON) => '. substr($stringJSON, 6, 5);
-		?>		
-	</h3>
+		?>	
+	</div>
 
 	<br>
-	<br>
 
-	<h3>
-		Retorna todas as ocorrencias na String
+	<div class="alert alert-dark tests-size">
 		<?php
+			echo '<h3>' . 'Retorna todas as ocorrencias na String' . '</h3>'; 
 			echo '<br>'.'while($offset = strpos($stringJSON, "u", $offset + 1))'.'<br><br>';
 			echo 'Resultados ==> ';
 			$offset = 0;
@@ -95,161 +115,201 @@
 				echo $offset. ', ';
 			}
 		?>
-	</h3>
-
-	<br>
-	<br>
-
-	<?php
-		echo '<h3>' . 'String em Array' . '</h3>';
-		echo '$ArrayJSON = str_split($stringJSON, 3)'.'<br><br>';
-		$ArrayJSON = str_split($stringJSON, 3);
-		echo 'Resultado str_split() ==> '. $ArrayJSON[2].'<br>';
-
-		$arrayParseJSON = "nome=$ArrayJSON[0]&sty=$ArrayJSON[4]&gus=$ArrayJSON[2]";
-
-		parse_str($arrayParseJSON, $varParse);
-
-		echo '<h3>' . 'parse_str()' . '</h3>';
-
-		echo 'Resultado parse_str() ==> '. $varParse['nome'];
-		echo '<br>'.'Resultado parse_str() ==> '. $varParse['sty'];
-		echo '<br>'.'Resultado parse_str() ==> '. $varParse['gus']. '<br>';
-
-		echo '<h3>' . 'explode()' . '</h3>';
-		$arrayExplodeJSON = explode(',', $stringJSON);
-
-		foreach ($arrayExplodeJSON as $pos) {
-			echo $pos;
-		}
-
-		echo '<h3>' . 'implode()' . '</h3>';
-		$newJSON = implode($arrayExplodeJSON, ' ---  ');
-
-		echo $newJSON;
-
-		echo '<h2>' . 'Remoção de espaços em branco - trim, ltrim, rtrim' . '</h2>'; 
-		echo '<h3>' . 'trim' . '</h3>';
-		echo 'Frase original: ' . $testPhraseWhitespaces . '<br>';
-		echo 'Frase com [trim()]: ' . trim($testPhraseWhitespaces);
-
-		echo '<h3>' . 'ltrim' . '</h3>';
-		echo 'Frase original: ' . $testPhraseWhitespaces . '<br>';
-		echo 'Frase com [ltrim()]: ' . ltrim($testPhraseWhitespaces);
-
-		echo '<h3>' . 'rtrim' . '</h3>';
-		echo 'Frase original: ' . $testPhraseWhitespaces . '<br>';
-		echo 'Frase com [rtrim()]: ' . rtrim($testPhraseWhitespaces);
-
-		echo '<br><h2>' . 'Proteção do SQL' . '</h2>'; 
-
-		echo '<h3>' . 'addslashes()' . '</h3>';
-		echo 'Normal: ' . addslashes($testSQLProtectN) . '<br>';	
-		echo 'Apostrofe: ' . addslashes($testSQLProtectAsp) . '<br>';
-		echo 'Aspa: ' . addslashes($testSQLProtectDAsp) . '<br>';
-
-		echo '<h3>' . 'stripslashes()' . '</h3>';
-		echo 'Normal: ' . stripslashes($testSQLProtectN) . '<br>';	
-		echo 'Apostrofe: ' . stripslashes($testSQLProtectAsp) . '<br>';
-		echo 'Aspa: ' . stripslashes($testSQLProtectDAsp) . '<br>';
-
-		echo '<h3>' . 'casting(), [(int)$var1,  (string)$text]' . '</h3>';
-		echo 'Numero: ' . (int)$table;
-		echo '<br>Texto: ' . (string)$phrase;
-
-		echo '<h3>' . 'Array - Posicionamento' . '</h3>';
-		echo 'posicionamento por numero: ' . '1';
-		echo '<br>posicionamento por string: ' . '\' alpha \'';
-
-
-		echo '<h3>' . 'Array - acesso' . '</h3>';
-		$myArray =  array('alpha' => 'Dragon Ball', 1,'U.S.A.');
-		echo 'Numero: ' . $myArray[1];	
-		echo '<br>Texto: ' . $myArray['alpha'];
-
-		echo '<h3>' . 'Array - Impressao de todo o Array [print_r()]' . '</h3>';
-		echo print_r($myArray);
-
-		echo '<h3>' . 'Array - Multidimensionais' . '</h3>';
-
-		$lettersAToE = array('a','b','c','d','e');
-		$lettersFToJ = array('f','g','h','i','j');
-		$alphabet = array($lettersAToE, $lettersFToJ);
-		echo 'Acesso a Letra C: ' . $alphabet[0][2] . '<br>';
-		echo 'Acesso a Letra I: ' . $alphabet[1][3] . '<br>';
-		echo 'Acesso a Letra G: ' . $alphabet[1][1] . '<br>';
-
-		echo '<h3>' . 'Array - Remoção de elementos [unset()]' . '</h3>';
-		echo 'Remoção elemento 1x3 Array $alphabet:' . $jumpLine;
-		unset($alphabet[1][3]);
-		echo '$alphabet, sem o elemento 1x3, elemento <b>I </b>: ';
-		print_r($alphabet);
-
-		echo '<h3>' . 'Array - Numero de elementos [count() e sizeof()]' . '</h3>';
-		echo 'quantidade de elementos $lettersAToE: ' . count($lettersAToE) . $jumpLine;
-		echo 'quantidade de elementos $lettersAToE: ' . sizeof($lettersAToE) . $jumpLine;
-
-		echo '<h3>' . 'Array - Numero de elementos [foreach,current, key, prev, next, end e reset]' . '</h3>';
-		echo '<h4>FOREACH</h4>';
-		foreach($lettersFToJ as $letters) {
-			echo '<b>foreach:</b> ' . $letters . $jumpLine;
-		};
-		echo '<b>current:</b> ' . current($lettersFToJ);
-		
-		echo $jumpLine;
-		echo '<b>key:</b> ' . key($lettersFToJ);
-		
-		echo $jumpLine;
-		echo '<b>prev:</b> ' . prev($lettersFToJ);
-		
-		echo $jumpLine;
-		echo '<b>next:</b> ' . next($lettersFToJ);
-		
-		echo $jumpLine;
-		echo '<b>end:</b> ' . end($lettersFToJ);
-		
-		echo $jumpLine;
-		echo '<b>reset:</b> ' . reset($lettersFToJ);
+	</div>
 	
-		echo $jumpLine;
-		echo '<b>ARRAY FINAL:</b>'; 
-		print_r($lettersFToJ); 
-		echo $jumpLine;
+	<br>
 
-		echo '<h3>' . 'Array - Pilhas [Push e Pop]' . '</h3>';
-		echo '<b>Push (Insere valor ao final da pilha):</b>' . $jumpLine;
-		$valuePile = array();
-		echo array_push($valuePile, 'v2') . '<br>';
-		echo array_push($valuePile, 'v4') . '<br>';
-		echo array_push($valuePile, 'v1') . '<br>';
-		echo $jumpLine;
+	<div class="alert alert-dark tests-size">
+		<?php
+			echo '<h3>' . 'String em Array' . '</h3>';
+			echo '$ArrayJSON = str_split($stringJSON, 3)'.'<br><br>';
+			$ArrayJSON = str_split($stringJSON, 3);
+			echo 'Resultado str_split() ==> '. $ArrayJSON[2].'<br>';
 
-		echo '<b>Push (Remove valor ao final da pilha):</b>' . $jumpLine;
-		echo 'POP: ' . array_pop($valuePile) . $jumpLine;
-		echo 'POP: ' . array_pop($valuePile) . $jumpLine;
-		echo 'POP: ' . array_pop($valuePile) . $jumpLine;
-		echo $jumpLine;
+			$arrayParseJSON = "nome=$ArrayJSON[0]&sty=$ArrayJSON[4]&gus=$ArrayJSON[2]";
+			parse_str($arrayParseJSON, $varParse);
 
-		echo '<h3>' . 'Array - Filas [Push, Shift e Unshift]' . '</h3>';
-		$valueQueue = array();
-		echo array_push($valueQueue, 'F1');
-		echo array_push($valueQueue, 'T21');
-		echo array_push($valueQueue, 'I13');
-		echo array_push($valueQueue, 'I14');
-		echo array_push($valueQueue, 'F2');
+			echo '<h3>' . 'parse_str()' . '</h3>';
 
-		print_r($valueQueue);
+			echo 'Resultado parse_str() ==> '. $varParse['nome'];
+			echo '<br>'.'Resultado parse_str() ==> '. $varParse['sty'];
+			echo '<br>'.'Resultado parse_str() ==> '. $varParse['gus']. '<br>';
 
-		echo $jumpLine;
-		echo $jumpLine;
+			echo '<h3>' . 'explode()' . '</h3>';
+			$arrayExplodeJSON = explode(',', $stringJSON);
 
-		echo 'Fila Shift: ' . array_shift($valueQueue);
-		echo $jumpLine;
-		echo 'Fila Shift: ' . array_shift($valueQueue);
-		echo $jumpLine;
-		echo 'Fila Shift: ' . array_shift($valueQueue);
-		echo $jumpLine;
-		echo 'Fila Unshift (posicao na fila): ' . array_unshift($valueQueue,'F3');
-	?>
+			foreach ($arrayExplodeJSON as $pos) {
+				echo $pos;
+			}
+
+			echo '<h3>' . 'implode()' . '</h3>';
+			$newJSON = implode($arrayExplodeJSON, ' ---  ');
+
+			echo $newJSON;
+		?>
+	</div>
+	<div class="alert alert-dark tests-size">
+		<?php 
+
+			echo '<h2>' . 'Remoção de espaços em branco - trim, ltrim, rtrim' . '</h2>'; 
+			echo '<h3>' . 'trim' . '</h3>';
+			echo 'Frase original: ' . $testPhraseWhitespaces . '<br>';
+			echo 'Frase com [trim()]: ' . trim($testPhraseWhitespaces);
+
+			echo '<h3>' . 'ltrim' . '</h3>';
+			echo 'Frase original: ' . $testPhraseWhitespaces . '<br>';
+			echo 'Frase com [ltrim()]: ' . ltrim($testPhraseWhitespaces);
+
+			echo '<h3>' . 'rtrim' . '</h3>';
+			echo 'Frase original: ' . $testPhraseWhitespaces . '<br>';
+			echo 'Frase com [rtrim()]: ' . rtrim($testPhraseWhitespaces);
+		?>
+	</div>
+	<div class="alert alert-dark tests-size">
+		<?php 
+
+			echo '<br><h2>' . 'Proteção do SQL' . '</h2>'; 
+
+			echo '<h3>' . 'addslashes()' . '</h3>';
+			echo 'Normal: ' . addslashes($testSQLProtectN) . '<br>';	
+			echo 'Apostrofe: ' . addslashes($testSQLProtectAsp) . '<br>';
+			echo 'Aspa: ' . addslashes($testSQLProtectDAsp) . '<br>';
+
+			echo '<h3>' . 'stripslashes()' . '</h3>';
+			echo 'Normal: ' . stripslashes($testSQLProtectN) . '<br>';	
+			echo 'Apostrofe: ' . stripslashes($testSQLProtectAsp) . '<br>';
+			echo 'Aspa: ' . stripslashes($testSQLProtectDAsp) . '<br>';
+
+			echo '<h3>' . 'casting(), [(int)$var1,  (string)$text]' . '</h3>';
+			echo 'Numero: ' . (int)$table;
+			echo '<br>Texto: ' . (string)$phrase;
+		?>
+	</div>
+	<div class="alert alert-dark tests-size">
+		<?php 
+			echo '<h3>' . 'Array - Posicionamento' . '</h3>';
+			echo 'posicionamento por numero: ' . '1';
+			echo '<br>posicionamento por string: ' . '\' alpha \'';
+
+		?>
+	</div>
+	<div class="alert alert-dark tests-size">
+		<?php	
+			echo '<h3>' . 'Array - acesso' . '</h3>';
+			$myArray =  array('alpha' => 'Dragon Ball', 1,'U.S.A.');
+			echo 'Numero: ' . $myArray[1];	
+			echo '<br>Texto: ' . $myArray['alpha'];
+		?>
+	</div>
+	<div class="alert alert-dark tests-size">
+		<?php
+			echo '<h3>' . 'Array - Impressao de todo o Array [print_r()]' . '</h3>';
+			echo print_r($myArray);
+		?>
+	</div>
+	<div class="alert alert-dark tests-size">
+		<?php
+			echo '<h3>' . 'Array - Multidimensionais' . '</h3>';
+
+			$lettersAToE = array('a','b','c','d','e');
+			$lettersFToJ = array('f','g','h','i','j');
+			$alphabet = array($lettersAToE, $lettersFToJ);
+			echo 'Acesso a Letra C: ' . $alphabet[0][2] . '<br>';
+			echo 'Acesso a Letra I: ' . $alphabet[1][3] . '<br>';
+			echo 'Acesso a Letra G: ' . $alphabet[1][1] . '<br>';
+		?>
+	</div>
+	<div class="alert alert-dark tests-size">
+		<?php
+			echo '<h3>' . 'Array - Remoção de elementos [unset()]' . '</h3>';
+			echo 'Remoção elemento 1x3 Array $alphabet:' . $jumpLine;
+			unset($alphabet[1][3]);
+			echo '$alphabet, sem o elemento 1x3, elemento <b>I </b>: ';
+			print_r($alphabet);
+		?>
+	</div>
+	<div class="alert alert-dark tests-size">
+		<?php
+			echo '<h3>' . 'Array - Numero de elementos [count() e sizeof()]' . '</h3>';
+			echo 'quantidade de elementos $lettersAToE: ' . count($lettersAToE) . $jumpLine;
+			echo 'quantidade de elementos $lettersAToE: ' . sizeof($lettersAToE) . $jumpLine;
+		?>
+	</div>
+	<div class="alert alert-dark tests-size">
+		<?php		
+			echo '<h3>' . 'Array - Numero de elementos [foreach,current, key, prev, next, end e reset]' . '</h3>';
+			echo '<h4>FOREACH</h4>';
+			foreach($lettersFToJ as $letters) {
+				echo '<b>foreach:</b> ' . $letters . $jumpLine;
+			};
+			echo '<b>current:</b> ' . current($lettersFToJ);
+			
+			echo $jumpLine;
+			echo '<b>key:</b> ' . key($lettersFToJ);
+			
+			echo $jumpLine;
+			echo '<b>prev:</b> ' . prev($lettersFToJ);
+			
+			echo $jumpLine;
+			echo '<b>next:</b> ' . next($lettersFToJ);
+			
+			echo $jumpLine;
+			echo '<b>end:</b> ' . end($lettersFToJ);
+			
+			echo $jumpLine;
+			echo '<b>reset:</b> ' . reset($lettersFToJ);
+		
+			echo $jumpLine;
+			echo '<b>ARRAY FINAL:</b>'; 
+			print_r($lettersFToJ); 
+			echo $jumpLine;
+		?>
+	</div>
+	<div class="alert alert-dark tests-size">
+		<?php
+			echo '<h3>' . 'Array - Pilhas [Push e Pop]' . '</h3>';
+			echo '<b>Push (Insere valor ao final da pilha):</b>' . $jumpLine;
+			$valuePile = array();
+			echo array_push($valuePile, 'v2') . '<br>';
+			echo array_push($valuePile, 'v4') . '<br>';
+			echo array_push($valuePile, 'v1') . '<br>';
+			echo $jumpLine;
+
+			echo '<b>Push (Remove valor ao final da pilha):</b>' . $jumpLine;
+			echo 'POP: ' . array_pop($valuePile) . $jumpLine;
+			echo 'POP: ' . array_pop($valuePile) . $jumpLine;
+			echo 'POP: ' . array_pop($valuePile) . $jumpLine;
+			echo $jumpLine;
+		?>
+	</div>
+	<div class="alert alert-dark tests-size">
+		<?php
+			echo '<h3>' . 'Array - Filas [Push, Shift e Unshift]' . '</h3>';
+			$valueQueue = array();
+			echo array_push($valueQueue, 'F1');
+			echo array_push($valueQueue, 'T21');
+			echo array_push($valueQueue, 'I13');
+			echo array_push($valueQueue, 'I14');
+			echo array_push($valueQueue, 'F2');
+
+			print_r($valueQueue);
+
+			echo $jumpLine;
+			echo $jumpLine;
+
+			echo 'Fila Shift: ' . array_shift($valueQueue);
+			echo $jumpLine;
+			echo 'Fila Shift: ' . array_shift($valueQueue);
+			echo $jumpLine;
+			echo 'Fila Shift: ' . array_shift($valueQueue);
+			echo $jumpLine;
+			echo 'Fila Unshift (posicao na fila): ' . array_unshift($valueQueue,'F3');
+		?>
+	</div>
+	<div class="alert alert-dark tests-size">
+		<?php 
+			echo '<h3>' . 'array_map(callback, arr1)' . '</h3>';
+		?>
+	</div>
 </body>
 </html>
