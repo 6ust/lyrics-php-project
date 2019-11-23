@@ -116,7 +116,7 @@
 			}
 		?>
 	</div>
-	
+
 	<br>
 
 	<div class="alert alert-dark tests-size">
@@ -308,7 +308,89 @@
 	</div>
 	<div class="alert alert-dark tests-size">
 		<?php 
-			echo '<h3>' . 'array_map(callback, arr1)' . '</h3>';
+			echo '<h3>' . 'Array - array_map(callback, arr1)' . '</h3>';
+			echo '<p>' . 'Adiciona array a uma função' . '</p>';
+
+			function multiplica($numEdit) {
+				return $numEdit * 28;
+			}
+
+			$seqNumeros = array(5,25,43,27,18);
+			$alterSeqNumeros = array_map('multiplica', $seqNumeros);
+
+			echo '<b>' . 'Original: ' . '</b>';
+			print_r($seqNumeros);
+			echo '<br>';
+			echo '<b>' . 'Alterado: ' . '</b>';
+			print_r($alterSeqNumeros);
+		?>
+	</div>
+	<div class="alert alert-dark tests-size">
+		<?php 
+			echo '<h3>' . 'Array - array_key_exists(key, array) e array_keys(input)' . '</h3>';
+			echo '<p>' . 'Verifica a existencia de uma chave' . '</p>';
+
+			$alterSeqNumeros = array_keys($seqNumeros);
+
+			echo '<b>' . 'Original: ' . '</b>';
+			print_r($seqNumeros);
+			echo '<br>';
+			echo '<b>' . 'array_keys(): ' . '</b>';
+			print_r($alterSeqNumeros);
+			echo '<br>';
+			echo '<b>' . 'array_key_exists() 1: ' . '</b>';
+			echo array_key_exists(1, $alterSeqNumeros) == 1 ? "true" : "false";
+			echo '<br>';
+			echo '<b>' . 'array_key_exists() 12: ' . '</b>';
+			echo array_key_exists(12, $alterSeqNumeros) == 1 ? "true" : "false";
+		?>
+	</div>
+	<div class="alert alert-dark tests-size">
+		<?php 
+			echo '<h3>' . 'Array - array_search(needle, haystack) e in_array(needle, haystack)' . '</h3>';
+			echo '<p>' . 'Localização de valores em um Array' . '</p>';
+			echo '<br>';
+			echo '<b>' . 'Array: ' . '</b>';
+			print_r($seqNumeros);
+			echo '<br>';
+			echo '<b>' . 'Existe 5: ' . '</b>';
+			echo array_search(5, $seqNumeros) >= 0 ? array_search(5, $seqNumeros) : "Não Existe";
+			echo '<br>';
+			echo '<b>' . 'Existe 18: ' . '</b>';
+			echo array_search(18, $seqNumeros) >= 0 ? array_search(18, $seqNumeros) : "Não Existe";
+			echo '<br>';
+			echo '<b>' . 'Existe 20: ' . '</b>';
+			echo array_search(20, $seqNumeros) >= 0 ? array_search(20, $seqNumeros) : "Não Existe";
+		?>
+	</div>
+	<div class="alert alert-dark tests-size">
+		<?php 
+			echo '<h3>' . 'Array - shuffle(array), sort(array) e rsort(array)' . '</h3>';
+			echo '<p>' . 'Mistura e Ordena Array' . '</p>';
+			echo '<p>' . 'sort() crescente' . '</p>';
+			echo '<p>' . 'rsort() decrescente' . '</p>';
+			echo '<p>' . 'shuffle() embaralhar' . '</p>';			
+			echo '<br>';
+			echo '<b>' . 'Array: ' . '</b>';
+			print_r($seqNumeros);
+			
+			echo '<br>';
+			echo '<br>';
+			echo '<b>' . 'sort(): ' . '</b>';
+			sort($seqNumeros);
+			print_r($seqNumeros);
+			
+			echo '<br>';
+			echo '<br>';
+			echo '<b>' . 'rsort(): ' . '</b>';
+			rsort($seqNumeros);
+			print_r($seqNumeros);
+			
+			echo '<br>';
+			echo '<br>';
+			echo '<b>' . 'shuffle(): ' . '</b>';
+			shuffle($seqNumeros);
+			print_r($seqNumeros);
 		?>
 	</div>
 </body>
