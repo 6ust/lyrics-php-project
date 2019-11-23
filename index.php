@@ -393,5 +393,13 @@
 			print_r($seqNumeros);
 		?>
 	</div>
+	<div class="alert alert-dark tests-size">
+		<h3>Modelagem e Criação do Banco de Dados</h3>
+
+		<p><b>O que sao Dados: </b>é um conjunto alfanumerico ou imagem que não esta agregado a nenhum conhecimento especifico, tornando esse dados inutilizavel para quem nao souber em qual contexto ele esta contido e o que extremamente representa</p>
+		<p><b>O que sao Informações: </b>é o segundo estagio de que um dado pode percorrer. É a agregação de um determinado conhecimento a um dado.</p>
+
+		<p><b>DESCRIBE table_name </b>mostra coluna, tipos e chaves/extras de uma tabela</p>
+	</div>
 </body>
 </html>
